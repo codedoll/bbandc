@@ -10,7 +10,22 @@
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>If you get lost, the
-    <a target="_blank" rel="noopener" href="https://ionicframework.com/docs">docs</a> will be your guide.</p>
+
+  <ion-item href="/addmoney" routerDirection="forward">
+  </ion-item>
+  
+  <div *ngFor="let user of user_accts">
+    <ion-card>
+      <ion-card-header>
+        {{user.actType | uppercase}} ACCOUNT <br>
+        <h1>{{user.actTotal | currency}}</h1>
+      </ion-card-header>
+      <ion-card-content>
+        Account owner: {{user.actName}} <br>
+        Account Number: {{user.actId}} <br>
+        Routing Number: 000-000-000 <br>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
 </ion-content>
