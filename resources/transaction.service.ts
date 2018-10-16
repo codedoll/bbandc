@@ -1,4 +1,4 @@
-import { Transaction } from '../../../models/transaction/transaction';
+import { Transaction } from '../../models/transaction/transaction';
 import { Injectable } from '@angular/core';
 import { 
   AngularFirestoreDocument,
