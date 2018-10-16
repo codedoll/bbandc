@@ -16,7 +16,8 @@ const routes: Routes = [
     loadChildren: './list/list.module#ListPageModule'
   },
   { path: 'addmoney', loadChildren: './addmoney/addmoney.module#AddmoneyPageModule' },
-  { path: 'login', loadChildren: './login/login.module#LoginPageModule' }
+  { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
+  { path: 'account-settings', loadChildren: './account-settings/account-settings.module#AccountSettingsPageModule' }
 ];
 
 @NgModule({

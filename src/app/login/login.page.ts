@@ -3,7 +3,7 @@ import { AuthService } from '../../services/authentication/authentication.servic
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import AuthProvider = firebase.auth.AuthProvider;
-import {Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -46,13 +46,7 @@ export class LoginPage implements OnInit {
       );
   }
 
-  signOut() {
-    this.afAuth.auth.signOut()
-
-  };
-
   signUp() {
-    // Create instance of newUser formgroup
     let newUser = this.newUser.value;
     return this.afAuth.auth.createUserWithEmailAndPassword(
       newUser.email,

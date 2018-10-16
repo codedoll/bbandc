@@ -22,6 +22,11 @@ export class AppComponent {
     },
     {
       title: 'Account',
+      url: '/account-settings',
+      icon: ''
+    },
+    {
+      title: 'Log In',
       url: '/login',
       icon: ''
     }

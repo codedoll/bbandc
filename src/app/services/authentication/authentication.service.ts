@@ -26,8 +26,7 @@ export class AuthService {
 	}
 
 	signOut() {
-		console.log("Signout")
-		// this.afAuth.auth.signOut();
+		this.afAuth.auth.signOut()
 	}
 
 	getUserId() {
