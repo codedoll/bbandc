@@ -24,7 +24,7 @@
       <ion-label>Password</ion-label>
       <ion-textarea formControlName="password"></ion-textarea>
     </ion-item>
-    <ion-button (click)="logIn()" expand="block">Log In</ion-button>
+    <ion-button (click)="signIn()" expand="block">Log In</ion-button>
   </form>
 
   <form [formGroup]="newUser" (ngSubmit)="signUp()">

@@ -38,7 +38,7 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
 
-  logIn() {
+  signIn() {
     let loginUser = this.loginUser.value;
     return this.afAuth.auth.signInWithEmailAndPassword(
       loginUser.email,
@@ -46,7 +46,7 @@ export class LoginPage implements OnInit {
       );
   }
 
-  logOut() {
+  signOut() {
     this.afAuth.auth.signOut()
 
   };
