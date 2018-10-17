@@ -23,7 +23,10 @@ export class AuthService {
 		this.afAuth.auth.createUserWithEmailAndPassword(
 		  newUser.email,
 		  newUser.password
-		);
+		).then((user) => {
+			this.navCtrl.navigateForward('/home'), { user : user };
+		})
+		.catch(error => console.log(error));
 	}
 
 	signInWithEmail(credentials) {
