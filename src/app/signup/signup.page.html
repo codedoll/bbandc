@@ -7,6 +7,10 @@
 <ion-content padding>
   <form [formGroup]="newUser" (ngSubmit)="signUp()">
     <ion-item>
+      <ion-label>Name</ion-label>
+      <ion-textarea formControlName="actName"></ion-textarea>
+    </ion-item>
+    <ion-item>
       <ion-label>Email</ion-label>
       <ion-input type="text" formControlName="email"></ion-input>
     </ion-item>

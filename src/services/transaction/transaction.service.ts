@@ -1,4 +1,5 @@
 import { Transaction } from '../../models/transaction/transaction';
+
 import { Injectable } from '@angular/core';
 import {
   AngularFirestoreDocument,
@@ -14,6 +15,8 @@ import { from } from 'rxjs';
 export class TransactionService {
 
   transactions: AngularFirestoreCollection<Transaction>;
+
+  // _accounts: AngularFirestoreCollection<createAct>;
 
   private taskDoc: AngularFirestoreDocument<Transaction>;
 
@@ -33,7 +36,6 @@ export class TransactionService {
         .where("accountNumber", "==", _actId).get().then((querySnapshot) => {
           // this.fireStore.collection('Transactions').ref.get().then((querySnapshot) => {
           this.transactionList = querySnapshot.docs.map(doc => doc.data());
-          return this.transactionList
           resolve(this.transactions);
         })
     });
@@ -58,6 +60,12 @@ export class TransactionService {
     let transactID = `${userID.substring(1, 6)}-${Math.floor(Math.random() * 90000) + 10000}`
     return transactID;
   }
-  transactId
+
+
+  // Create an account
+  createAcct(createAct) {
+
+
+  }
 
 }

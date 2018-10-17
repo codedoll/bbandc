@@ -10,7 +10,9 @@
 <ion-content padding>
   <ion-list *ngFor="let user of passedData">
     <ion-list-header>
-      {{user.date.toDate() | date: 'short'}}
+      {{user.date.toDate() | date: 'short'}}, {{user.transactType}}
+      <br>
+      {{user.transactId}}
     </ion-list-header>
     <ion-item>{{user.amt | currency}}</ion-item>
   </ion-list>
