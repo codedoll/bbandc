@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { first } from 'rxjs/operators';
-import { NavController } from '@ionic/angular';
+import { NavController, MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -17,11 +17,13 @@ export class HomePage {
   constructor (
     private fireStore: AngularFirestore,
     private afAuth: AngularFireAuth,
-    private navCtrl: NavController
+    private navCtrl: NavController,
+    private menuCtrl: MenuController
   ){
 
   }
   ngAfterViewInit() {
+    this.menuCtrl.enable(true);
     this.getActNum();
   }
 

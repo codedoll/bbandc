@@ -38,11 +38,6 @@ export class AuthService {
 			this.navCtrl.navigateForward('/home'), { user : user };
 		})
 		.catch(error => console.log(error));
-
-		// success
-
-		this.menuCtrl.enable(true);
-
 	}
 
 	signOut() {

@@ -15,8 +15,7 @@ import { Router } from '@angular/router';
 export class LoginPage implements OnInit {
   
   private loginUser : FormGroup;
-  private newUser: FormGroup;
-
+  
   constructor(
     public afAuth: AngularFireAuth,
     private formBuilder: FormBuilder,
@@ -26,14 +25,8 @@ export class LoginPage implements OnInit {
     private navCtrl: NavController
   ) { 
 
-    // Log in user
+    // Form content in log in form
     this.loginUser = this.formBuilder.group({
-      email: ['', Validators.required],
-      password: [''],
-    });
-    
-    // Create a new user
-    this.newUser = this.formBuilder.group({
       email: ['', Validators.required],
       password: [''],
     });
@@ -47,11 +40,6 @@ export class LoginPage implements OnInit {
   signIn(){
     let loginUser = this.loginUser.value;
     this.auth.signInWithEmail(loginUser);
-  }
-
-  signUp() {
-    let newUser = this.newUser.value;
-    this.auth.signUpWithEmailAndPassword(newUser);
   }
 
 }
