@@ -35,6 +35,7 @@ export class SignupPage implements OnInit {
 
   signUp() {
     let newUser = this.newUser.value;
+    // The authentication provider handles even the redirect.
     this.auth.signUpWithEmailAndPassword(newUser);
   }
 
