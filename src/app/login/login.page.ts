@@ -34,12 +34,18 @@ export class LoginPage implements OnInit {
   }
 
   ngOnInit() {
+    // Automatically sign out user
+    this.afAuth.auth.signOut();
     this.menuCtrl.enable(false);
   }
 
   signIn(){
     let loginUser = this.loginUser.value;
     this.auth.signInWithEmail(loginUser);
+  }
+
+  goToSignUp(){
+    this.navCtrl.navigateForward('/signup');
   }
 
 }
