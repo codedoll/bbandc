@@ -23,17 +23,7 @@
     </ion-item>
     <ion-button (click)="signIn()" expand="block">Log In</ion-button>
   </form>
-
-  <form [formGroup]="newUser" (ngSubmit)="signUp()">
-    <ion-item>
-      <ion-label>Email</ion-label>
-      <ion-input type="text" formControlName="email"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label>Password</ion-label>
-      <ion-textarea formControlName="password"></ion-textarea>
-    </ion-item>
-    <ion-button (click)="signUp()" expand="block">Sign Up</ion-button>
-  </form>
-
+  <div text-center>
+    Not an account holder? Sign up here.
+  </div>
 </ion-content>

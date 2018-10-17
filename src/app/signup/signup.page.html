@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>signup</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="newUser" (ngSubmit)="signUp()">
+    <ion-item>
+      <ion-label>Email</ion-label>
+      <ion-input type="text" formControlName="email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Password</ion-label>
+      <ion-textarea formControlName="password"></ion-textarea>
+    </ion-item>
+    <ion-button (click)="signUp()" expand="block">Sign Up</ion-button>
+  </form>
+</ion-content>

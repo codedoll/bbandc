@@ -8,14 +8,14 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.page.html',
-  styleUrls: ['./login.page.scss'],
+  selector: 'app-signup',
+  templateUrl: './signup.page.html',
+  styleUrls: ['./signup.page.scss'],
 })
-export class LoginPage implements OnInit {
-  
-  private loginUser : FormGroup;
-  
+export class SignupPage implements OnInit {
+
+  private newUser: FormGroup;
+
   constructor(
     public afAuth: AngularFireAuth,
     private formBuilder: FormBuilder,
@@ -23,23 +23,20 @@ export class LoginPage implements OnInit {
     private router: Router,
     private menuCtrl: MenuController,
     private navCtrl: NavController
-  ) { 
+  ) { }
 
-    // Form content in log in form
-    this.loginUser = this.formBuilder.group({
+  ngOnInit() {
+    // Create a new user
+    this.newUser = this.formBuilder.group({
       email: ['', Validators.required],
       password: [''],
     });
-
   }
 
-  ngOnInit() {
-    this.menuCtrl.enable(false);
-  }
-
-  signIn(){
-    let loginUser = this.loginUser.value;
-    this.auth.signInWithEmail(loginUser);
+  signUp() {
+    let newUser = this.newUser.value;
+    // The authentication provider handles even the redirect.
+    this.auth.signUpWithEmailAndPassword(newUser);
   }
 
 }
