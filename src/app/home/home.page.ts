@@ -105,7 +105,7 @@ export class HomePage {
       )
 
     } else {
-      this.navCtrl.navigateRoot('/login');
+      // this.navCtrl.navigateRoot('/login');
     }
 
   }

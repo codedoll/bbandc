@@ -6,6 +6,8 @@ import { MenuController, NavController } from '@ionic/angular';
 import AuthProvider = firebase.auth.AuthProvider;
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TransactionService } from '../../services/transaction/transaction.service';
+
 
 @Component({
   selector: 'app-signup',
@@ -22,7 +24,8 @@ export class SignupPage implements OnInit {
     private auth: AuthService,
     private router: Router,
     private menuCtrl: MenuController,
-    private navCtrl: NavController
+    private navCtrl: NavController,
+    private transact: TransactionService
   ) { }
 
   ngOnInit() {
@@ -30,12 +33,12 @@ export class SignupPage implements OnInit {
     this.newUser = this.formBuilder.group({
       email: ['', Validators.required],
       password: [''],
+      actName: [''],
     });
   }
 
   signUp() {
     let newUser = this.newUser.value;
-    // The authentication provider handles even the redirect.
     this.auth.signUpWithEmailAndPassword(newUser);
   }
 
