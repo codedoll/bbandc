@@ -17,7 +17,8 @@ const routes: Routes = [
   },
   { path: 'addmoney', loadChildren: './addmoney/addmoney.module#AddmoneyPageModule' },
   { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
-  { path: 'account-settings', loadChildren: './account-settings/account-settings.module#AccountSettingsPageModule' }
+  { path: 'account-settings', loadChildren: './account-settings/account-settings.module#AccountSettingsPageModule' },
+  { path: 'signup', loadChildren: './signup/signup.module#SignupPageModule' }
 ];
 
 @NgModule({
