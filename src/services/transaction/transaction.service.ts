@@ -26,12 +26,6 @@ export class TransactionService {
 
   }
 
-  getTransactionList() {
-    // Get transactions in an account by searching using accountNo
-    // console.log(this.fireStore.doc<any>('userProfile/we45tfgy8ij'))
-    // return this.fireStore.doc<any>('userProfile/we45tfgy8ij')
-  }
-
   getTransactList(actId) {
     return new Promise((resolve, reject) => {
       var _actId = parseInt(actId)
