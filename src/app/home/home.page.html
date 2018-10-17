@@ -10,9 +10,9 @@
 </ion-header>
 
 <ion-content padding>
-  
+
   <div *ngFor="let user of user_accts">
-    <ion-card>
+    <ion-card (click)="showModal(user)">
       <ion-card-header>
         {{user.actType | uppercase}} ACCOUNT <br>
         <h1>{{user.actTotal | currency}}</h1>

@@ -18,7 +18,11 @@ const routes: Routes = [
   { path: 'addmoney', loadChildren: './addmoney/addmoney.module#AddmoneyPageModule' },
   { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
   { path: 'account-settings', loadChildren: './account-settings/account-settings.module#AccountSettingsPageModule' },
-  { path: 'signup', loadChildren: './signup/signup.module#SignupPageModule' }
+  { path: 'signup', loadChildren: './signup/signup.module#SignupPageModule' },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: 'account-details', loadChildren: './account-details/account-details.module#AccountDetailsPageModule' },
+  { path: 'modal', loadChildren: './modal/modal.module#ModalPageModule' },
+
 ];
 
 @NgModule({

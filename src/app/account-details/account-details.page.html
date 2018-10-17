@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>account-details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <div *ngIf="_transactList">
+    <div *ngFor="let user of _transactList">
+      <ion-card>
+        <ion-card-header>
+          {{user.actType | uppercase}} ACCOUNT <br>
+          <h1>{{user.actTotal | currency}}</h1>
+        </ion-card-header>
+        <ion-card-content>
+          Account owner: {{user.actName}} <br>
+          Account Number: {{user.actId}} <br>
+          Routing Number: 000-000-000 <br>
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </div>
+</ion-content>

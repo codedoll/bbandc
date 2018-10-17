@@ -19,7 +19,6 @@ export class AuthService {
 	}
 
 	signUpWithEmailAndPassword(newUser){
-		this.navCtrl.navigateForward('/home');
 		this.afAuth.auth.createUserWithEmailAndPassword(
 		  newUser.email,
 		  newUser.password

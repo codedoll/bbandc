@@ -23,11 +23,15 @@ import { firebaseConfig } from '../environments/environment';
 
 // Services
 import { TransactionService } from '../services/transaction/transaction.service';
-import { AuthService } from '../services/authentication/authentication.service'
+import { AuthService } from '../services/authentication/authentication.service';
 
+// Modals
+import { ModalPageModule } from './modal/modal.module'
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+    AppComponent
+  ],
   entryComponents: [],
   imports: [
     BrowserModule,
@@ -36,7 +40,8 @@ import { AuthService } from '../services/authentication/authentication.service'
     AngularFireModule.initializeApp(firebaseConfig.fire),
     AngularFirestoreModule.enablePersistence(),
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ModalPageModule
   ],
   providers: [
     StatusBar,

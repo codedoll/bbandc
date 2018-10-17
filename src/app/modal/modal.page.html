@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons large (click)="closeModal()">
+      <ion-icon ios="ios-close" md="md-close"></ion-icon>
+    </ion-buttons>
+    <ion-title>Transactions Detail</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list *ngFor="let user of passedData">
+    <ion-list-header>
+      {{user.date.toDate() | date: 'short'}}
+    </ion-list-header>
+    <ion-item>{{user.amt | currency}}</ion-item>
+  </ion-list>
+</ion-content>
