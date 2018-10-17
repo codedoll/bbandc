@@ -4,6 +4,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { first } from 'rxjs/operators';
 import { NavController, MenuController, ModalController } from '@ionic/angular';
 import { AccountDetailsPageModule } from '../account-details/account-details.module';
+import { ModalPage } from '../modal/modal.page'
 
 @Component({
   selector: 'app-home',
@@ -15,19 +16,31 @@ export class HomePage {
   user_accts;
   transactions;
 
-  constructor (
+  constructor(
     private fireStore: AngularFirestore,
     private afAuth: AngularFireAuth,
     private navCtrl: NavController,
     private menuCtrl: MenuController,
     public modalCtrl: ModalController
-  ){
+  ) {
 
   }
   ngAfterViewInit() {
     this.menuCtrl.enable(true);
     this.getActNum();
   }
+
+  async showModal(user) {
+    const modal = await this.modalCtrl.create({
+      component: ModalPage,
+      componentProps: {
+        passedData: user
+      }
+    });
+
+    return await modal.present();
+  }
+
 
   isLoggedIn() {
     return this.afAuth.authState.pipe(first()).toPromise();
@@ -37,14 +50,14 @@ export class HomePage {
     return new Promise((resolve, reject) => {
       this.fireStore.collection('Accounts').ref.where('userId', '==', userId).get().then((querySnapshot) => {
         this.user_accts = querySnapshot.docs.map(doc => doc.data());
-        this.user_accts.forEach(function(obj) { obj.acct_transactions = []; });
+        this.user_accts.forEach(function (obj) { obj.acct_transactions = []; });
         console.log(this.user_accts)
       })
-        resolve();
+      resolve();
     });
   };
 
-  getTransactions(userId) {
+  getTransactionByUser(userId) {
     return new Promise((resolve, reject) => {
       this.fireStore.collection('Transactions').ref.where("user", "==", userId).get().then((querySnapshot) => {
         this.transactions = querySnapshot.docs.map(doc => doc.data());
@@ -54,13 +67,13 @@ export class HomePage {
   };
 
   separateTransacts(transactArr) {
-    this.user_accts.forEach(function(element) {
+    this.user_accts.forEach(function (element) {
       var result = transactArr.filter(obj => {
         return obj.accountNumber === element.actId
       })
 
       // Create a sum property in our array
-      var actSum = result.reduce(function(prev, cur) {
+      var actSum = result.reduce(function (prev, cur) {
         return prev + cur.amt;
       }, 0);
 
@@ -76,38 +89,33 @@ export class HomePage {
 
   async getActNum() {
     // Wait for isLoggedIn to finish checking the logged in user
-      const user = await this.isLoggedIn();
-      if (user) {
-        let userId = user.uid;
-        this.getAccounts(userId).then((res) => {
-          // Get all transactions under this use
-          this.getTransactions(userId).then((res) => {
-            // Separating the transactions manually because we don't have a real json from a real api
-            this.separateTransacts(res);
-          }).catch(
-  
-          )
+    const user = await this.isLoggedIn();
+    if (user) {
+      let userId = user.uid;
+      this.getAccounts(userId).then((res) => {
+        // Get all transactions under this use
+        this.getTransactionByUser(userId).then((res) => {
+          // Separating the transactions manually because we don't have a real json from a real api
+          this.separateTransacts(res);
         }).catch(
 
         )
+      }).catch(
 
-      } else {
-        this.navCtrl.navigateRoot('/login');
-      }
+      )
 
+    } else {
+      this.navCtrl.navigateRoot('/login');
     }
-
-    viewAcctDtls(data){
-      this.navCtrl.navigateForward(['/account-details', { data: data }]);
-    }
-
-    goBack(){
-      this.navCtrl.navigateBack('/home');
-
-    }
-
 
   }
-  
+
+  goBack() {
+    this.navCtrl.navigateBack('/home');
+  }
+
+
+}
+
 
 

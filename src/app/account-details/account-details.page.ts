@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterModule, Route, ActivatedRoute } from '@angular/router';
+import { TransactionService } from '../../services/transaction/transaction.service';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-account-details',
@@ -9,15 +11,28 @@ import { Router, RouterModule, Route, ActivatedRoute } from '@angular/router';
 export class AccountDetailsPage implements OnInit {
 
   user;
+  transactId;
+  _transactList:any;
 
   constructor(
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private transact: TransactionService
     ) { }
 
   ngOnInit() {
-    console.log(this.route.snapshot.paramMap)
+    this.transactId = this.route.snapshot.paramMap.get('transactId');
 
+  }
+
+  getTransactions() {
+    this.transact.getTransactList(this.transactId).then((data) => {
+      console.log(data)
+    })
+  }
+
+  getTransactList() {
+    const data = this.getTransactions()
   }
 
 }

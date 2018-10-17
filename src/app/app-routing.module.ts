@@ -21,6 +21,7 @@ const routes: Routes = [
   { path: 'signup', loadChildren: './signup/signup.module#SignupPageModule' },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'account-details', loadChildren: './account-details/account-details.module#AccountDetailsPageModule' },
+  { path: 'modal', loadChildren: './modal/modal.module#ModalPageModule' },
 
 ];
 
