@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { first } from 'rxjs/operators';
-import { NavController, MenuController } from '@ionic/angular';
+import { NavController, MenuController, ModalController } from '@ionic/angular';
+import { AccountDetailsPageModule } from '../account-details/account-details.module';
 
 @Component({
   selector: 'app-home',
@@ -18,7 +19,8 @@ export class HomePage {
     private fireStore: AngularFirestore,
     private afAuth: AngularFireAuth,
     private navCtrl: NavController,
-    private menuCtrl: MenuController
+    private menuCtrl: MenuController,
+    public modalCtrl: ModalController
   ){
 
   }
@@ -94,6 +96,17 @@ export class HomePage {
       }
 
     }
+
+    viewAcctDtls(data){
+      this.navCtrl.navigateForward(['/account-details', { data: data }]);
+    }
+
+    goBack(){
+      this.navCtrl.navigateBack('/home');
+
+    }
+
+
   }
   
 
