@@ -16,12 +16,12 @@ export class AppComponent {
       icon: 'home'
     },
     {
-      title: 'List',
-      url: '/list',
-      icon: 'list'
+      title: 'Account',
+      url: '/account-settings',
+      icon: ''
     },
     {
-      title: 'Account',
+      title: 'Log In',
       url: '/login',
       icon: ''
     }

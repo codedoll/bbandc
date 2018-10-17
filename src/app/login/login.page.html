@@ -1,10 +1,7 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
     <ion-title>
-      Account Settings
+      Log In
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -24,7 +21,7 @@
       <ion-label>Password</ion-label>
       <ion-textarea formControlName="password"></ion-textarea>
     </ion-item>
-    <ion-button (click)="logIn()" expand="block">Log In</ion-button>
+    <ion-button (click)="signIn()" expand="block">Log In</ion-button>
   </form>
 
   <form [formGroup]="newUser" (ngSubmit)="signUp()">
@@ -38,8 +35,5 @@
     </ion-item>
     <ion-button (click)="signUp()" expand="block">Sign Up</ion-button>
   </form>
-
-  <ion-button (click)="signOut()" expand="block">Sign Out</ion-button>
-
 
 </ion-content>

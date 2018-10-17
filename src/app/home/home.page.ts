@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { first } from 'rxjs/operators';
-
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -17,6 +17,7 @@ export class HomePage {
   constructor (
     private fireStore: AngularFirestore,
     private afAuth: AngularFireAuth,
+    private navCtrl: NavController
   ){
 
   }
@@ -71,19 +72,25 @@ export class HomePage {
 
   async getActNum() {
     // Wait for isLoggedIn to finish checking the logged in user
-      const user = await this.isLoggedIn()
-      let userId = user.uid;
-      this.getAccounts(userId).then((res) => {
-        // Get all transactions under this use
-        this.getTransactions(userId).then((res) => {
-          // Separating the transactions manually because we don't have a real json from a real api
-          this.separateTransacts(res);
+      const user = await this.isLoggedIn();
+      if (user) {
+        let userId = user.uid;
+        this.getAccounts(userId).then((res) => {
+          // Get all transactions under this use
+          this.getTransactions(userId).then((res) => {
+            // Separating the transactions manually because we don't have a real json from a real api
+            this.separateTransacts(res);
+          }).catch(
+  
+          )
         }).catch(
 
         )
-      }).catch(
 
-      )
+      } else {
+        this.navCtrl.navigateRoot('/login');
+      }
+
     }
   }
   
