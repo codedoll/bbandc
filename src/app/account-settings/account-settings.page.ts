@@ -16,7 +16,7 @@ export class AccountSettingsPage implements OnInit {
   }
 
   signOut() {
-    this.auth.signOut()
+    this.auth.signOut();
   };
 
 }
