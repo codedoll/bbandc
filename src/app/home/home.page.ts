@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { first } from 'rxjs/operators';
 import { NavController, MenuController, ModalController } from '@ionic/angular';
 import { AccountDetailsPageModule } from '../account-details/account-details.module';
-import { ModalPage } from '../modal/modal.page'
+import { ModalPage } from '../modal/modal.page';
+import { AuthService } from '../../services/authentication/authentication.service'
+
 
 @Component({
   selector: 'app-home',
@@ -21,13 +22,14 @@ export class HomePage {
     private afAuth: AngularFireAuth,
     private navCtrl: NavController,
     private menuCtrl: MenuController,
-    public modalCtrl: ModalController
+    public modalCtrl: ModalController,
+    private auth: AuthService
   ) {
 
   }
   ngAfterViewInit() {
     this.menuCtrl.enable(true);
-    this.getActNum();
+    // this.getActNum();
   }
 
   async showModal(user) {
@@ -39,11 +41,6 @@ export class HomePage {
     });
 
     return await modal.present();
-  }
-
-
-  isLoggedIn() {
-    return this.afAuth.authState.pipe(first()).toPromise();
   }
 
   getAccounts(userId) {
@@ -89,7 +86,7 @@ export class HomePage {
 
   async getActNum() {
     // Wait for isLoggedIn to finish checking the logged in user
-    const user = await this.isLoggedIn();
+    const user = await this.auth.isLoggedIn()
     if (user) {
       let userId = user.uid;
       this.getAccounts(userId).then((res) => {
@@ -105,7 +102,7 @@ export class HomePage {
       )
 
     } else {
-      // this.navCtrl.navigateRoot('/login');
+      this.navCtrl.navigateRoot('/login');
     }
 
   }

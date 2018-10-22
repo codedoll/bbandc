@@ -12,6 +12,9 @@ import {
 	AngularFirestoreCollection
 } from 'angularfire2/firestore';
 
+import { first } from 'rxjs/operators';
+
+
 @Injectable()
 export class AuthService {
 	private user: firebase.User;
@@ -41,11 +44,11 @@ export class AuthService {
 			).then((newUserData) => {
 				let createdUserData = newUserData;
 				this.createAccounts(newUserData, newUser);
-				resolve();
+				resolve(newUserData);
 			})
 				.catch(error => console.log(error))
 		})
-	}
+	};
 
 	signInWithEmail(credentials) {
 		// Log in with the email registered on Firebase
@@ -132,15 +135,10 @@ export class AuthService {
 			this.navCtrl.navigateForward('/home');
 		})
 
-
-
 	}
 
+	isLoggedIn() {
+		return this.afAuth.authState.pipe(first()).toPromise();
+	}
 
-
-}
-
-export class AuthenticationService {
-
-	constructor() { }
 }
